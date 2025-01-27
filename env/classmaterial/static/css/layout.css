@@ -1,0 +1,117 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure content spans full height of the viewport */
+}
+
+/* Header styles */
+.site-header {
+    background-color: #0078D4;
+    color: #fff;
+    width: 100%; /* Ensure full width */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 80px;
+    box-sizing: border-box; /* Include padding in height calculation */
+    margin-bottom: auto; 
+}
+
+/* Optional header title styling */
+.site-header h1 {
+    margin: 0;
+    padding-left: 1rem; /* Add some padding for spacing */
+    text-transform: capitalize;
+}
+
+/* Header navigation styling */
+.site-header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Display navigation items inline */
+    align-items: center;
+    text-decoration: none;
+    color: #0078D4;
+    margin: 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.site-header nav ul li {
+    margin: 0 15px;
+}
+
+.site-header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s; /* Smooth hover effect */
+}
+
+.site-header nav ul li a:hover {
+    color: #ddd; /* Lighter shade on hover */
+}
+
+/* Footer styles */
+.site-footer {
+    background-color: #0078D4;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+/* Footer navigation styling */
+.site-footer nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Display navigation items inline */
+    align-items: center;
+    justify-content: center;
+}
+
+.site-footer nav ul li {
+    margin: 0 10px;
+}
+
+.site-footer nav ul li a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s; /* Smooth hover effect */
+}
+
+.site-footer nav ul li a:hover {
+    color: #fff; /* Lighter shade on hover */
+}
+
+/* Main content styles */
+main {
+    padding: 2rem; /* Additional padding for spacing */
+    flex: 1; /* Allow the main content to take up available space */
+    margin-bottom: 4rem; /* Space for footer height */
+    padding-top: 80px; /* Space for header */
+    display: flex; /* Center content vertically */
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto; /* Enable vertical scrolling within the main content */
+}
+
+/* Wrapper to contain the page content */
+.wrapper {
+    width: 100%;
+    flex: 1; /* Ensure the wrapper grows to fill available height */
+    display: flex;
+    flex-direction: column;
+}

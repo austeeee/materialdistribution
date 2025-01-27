@@ -1,0 +1,68 @@
+/* Scope all styles to the specific container */
+.class-choices-page {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.class-choices-page h1 {
+    font-size: 2.5rem; /* Slightly larger font for the heading */
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Style for the unordered list */
+.class-choices-page ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 40px auto; /* Add more spacing around the list */
+    max-width: 800px; /* Center the list and limit its width */
+}
+
+/* Style for individual list items */
+.class-choices-page ul li {
+    margin: 20px 0; /* Add vertical spacing between buttons */
+    text-align: center;
+}
+
+
+/* Style for the buttons (links) */
+.class-choices-page ul li a {
+    display: block; /* Make the buttons block-level for equal width */
+    width: 100%; /* Use full width of the container */
+    max-width: 600px; /* Limit the maximum width of buttons */
+    margin: 0 auto; /* Center the buttons within the list items */
+    font-size: 1.4rem; /* Larger font size for better readability */
+    text-decoration: none; /* Remove underline */
+    color: #2575fc; /* Blue text */
+    background: #f0f8ff; /* Light blue background */
+    padding: 15px 30px; /* More padding for wider buttons */
+    border-radius: 12px; /* Smooth rounded corners */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+    text-align: center; /* Center text inside buttons */
+}
+
+/* Hover effect for the buttons */
+.class-choices-page ul li a:hover {
+    background: #2575fc; /* Blue background */
+    color: #fff; /* White text */
+    transform: translateY(-3px); /* Lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* More shadow on hover */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    .class-choices-page h1 {
+        font-size: 2rem; /* Adjust heading size for smaller screens */
+    }
+
+    .class-choices-page ul li a {
+        font-size: 1.2rem; /* Adjust button text size for smaller screens */
+        padding: 12px 20px; /* Adjust button padding for smaller screens */
+        width: 90%; /* Reduce button width on smaller screens */
+    }
+}

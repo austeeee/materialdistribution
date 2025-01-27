@@ -1,0 +1,69 @@
+/* Styling for the request page */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Styling for action buttons */
+form {
+    display: inline;
+}
+
+button {
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+.btn-approve {
+    background-color: #28a745; /* Green for approve */
+    color: white;
+}
+
+.btn-approve:hover {
+    background-color: #218838;
+}
+
+.btn-reject {
+    background-color: #dc3545; /* Red for reject */
+    color: white;
+}
+
+.btn-reject:hover {
+    background-color: #c82333;
+}
+
+/* Styling for empty state */
+.text-center {
+    font-size: 16px;
+    font-weight: bold;
+    color: #777;
+}

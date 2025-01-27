@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Details</title>
+    <link rel="stylesheet" href="{% static 'css/junior.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Material Details</h1>
+        {% if materials %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Quantity Available</th>
+                    <th>Target Class</th>
+                    <th>Date Added</th>
+                    <th>Last Updated</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for material in materials %}
+                <tr>
+                    <td>{{ material.id }}</td>
+                    <td>{{ material.name }}</td>
+                    <td>{{ material.description }}</td>
+                    <td>{{ material.category }}</td>
+                    <td>{{ material.quantity_available }}</td>
+                    <td>{{ material.target_class }}</td>
+                    <td>{{ material.added_date|date:"Y-m-d H:i" }}</td>
+                    <td>{{ material.updated_date|date:"Y-m-d H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-data">No materials found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

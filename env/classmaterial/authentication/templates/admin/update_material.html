@@ -1,0 +1,48 @@
+{% extends 'headandfoot/layout.html' %}
+{% load static %}
+{% block title %}
+    Update Material
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/update.css' %}?v=2">
+<div class="container">
+    <h1>Update Material</h1>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ material.name }}" required><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required>{{ material.description }}</textarea><br>
+
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" value="{{ material.category }}" required><br>
+
+        <label for="quantity_available">Quantity Available:</label>
+        <input type="number" id="quantity_available" name="quantity_available" value="{{ material.quantity_available }}" required><br>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" value="{{ material.price }}" step="0.01" min="0" required><br>
+
+        <label for="target_class">Target Class:</label>
+        <select id="target_class" name="target_class" required>
+            {% for choice in target_class_choices %}
+                <option value="{{ choice }}" {% if material.target_class == choice %}selected{% endif %}>
+                    {{ choice }}
+                </option>
+            {% endfor %}
+        </select><br>
+
+        <label for="file">File:</label>
+        {% if material.file %}
+        <p>Current File: <a href="{{ material.file.url }}" target="_blank">{{ material.file.name }}</a></p>
+        {% endif %}
+        <input type="file" id="file" name="file"><br>
+
+        <button type="submit" class="btn submit-btn">Update</button>
+        <a href="{% url 'update_materials_list' %}" class="btn cancel-btn">Cancel</a>
+    </form>
+</div>
+{% endblock %}

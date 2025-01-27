@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Classroom Material Distribution Hub</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}?v=2">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Classroom Material Distribution Hub</h1>
+        <p>Manage, Request, and Distribute Educational Materials Seamlessly</p>
+    </header>
+
+    
+    <div class="profile-container">
+        <div class="profile-card">
+            <img src="{% static 'images/teacher.png' %}" alt="Teacher" class="profile-img">
+            <div class="profile-info">
+                <h3>Teacher</h3>
+                <p>Access your teacher dashboard</p>
+                <a href="{% url 'login' %}?role=teacher" class="btn">Teacher Login</a>
+            </div>
+        </div>
+    
+        <div class="profile-card">
+            <img src="{% static 'images/student.png' %}" alt="Student" class="profile-img">
+            <div class="profile-info">
+                <h3>Student</h3>
+                <p>Access your student dashboard</p>
+                <a href="{% url 'login' %}?role=student" class="btn">Student Login</a>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+
+    <section>
+        <h1>About This Platform</h1>
+        <p>
+            The Classroom Material Distribution Hub streamlines the process of managing and distributing educational materials to teachers and students. 
+            Teachers can request materials for their classes, students can request study materials, 
+            and admins can oversee inventory and distribution.
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Classroom Material Distribution Hub. All rights reserved.</p>
+    </footer>
+</body>
+</html>

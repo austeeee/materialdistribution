@@ -1,0 +1,91 @@
+{% extends 'headandfoot/layout.html' %}
+{% load static %}
+
+{% block title %}
+Update Materials List
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/update_material_list.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'css/student.css' %}?v=2">
+
+<div class="update-materials">
+    <h1>Manage Materials</h1>
+    {% if materials %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Target Class</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for material in materials %}
+            <tr>
+                <td>{{ material.name }}</td>
+                <td>{{ material.description }}</td>
+                <td>{{ material.category }}</td>
+                <td>{{ material.quantity_available }}</td>
+                <td>{{ material.target_class }}</td>
+                <td>
+                    <!-- Update Button -->
+                    <a href="{% url 'update_material' material.id %}" class="btn btn-primary">Update</a>
+                    <!-- Remove Button -->
+                    <form method="post" action="{% url 'remove_material' material.id %}" style="display:inline;" onsubmit="return confirm('Are you sure you want to remove this material?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                    <!-- View Comments Button -->
+                    <button class="btn comment-btn" onclick="openModal('{{ material.id }}')">View Comments</button>
+
+                    <!-- Modal for Comments -->
+                    <div id="modal-{{ material.id }}" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal('{{ material.id }}')">&times;</span>
+                            <h2>Comments for {{ material.name }}</h2>
+                            <div class="comments-section">
+                                <ul>
+                                    {% for comment in material.materialcomment_set.all %}
+                                    <li>
+                                        <strong>{{ comment.user.username }}:</strong> 
+                                        {{ comment.comment }} 
+                                        <small>({{ comment.created_at|date:"Y-m-d H:i" }})</small>
+                                    </li>
+                                    {% empty %}
+                                    <li>No comments yet.</li>
+                                    {% endfor %}
+                                </ul>
+                                <form method="post" action="{% url 'add_comment_admin' material.id %}">
+                                    {% csrf_token %}
+                                    <textarea name="comment" rows="4" placeholder="Add a comment..." required></textarea><br>
+                                    <button type="submit" class="btn submit-btn">Add Comment</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No materials available to display.</p>
+    {% endif %}
+</div>
+
+<!-- Modal JavaScript -->
+<script>
+function openModal(id) {
+    document.getElementById('modal-' + id).style.display = 'block';
+}
+
+function closeModal(id) {
+    document.getElementById('modal-' + id).style.display = 'none';
+}
+</script>
+{% endblock %}

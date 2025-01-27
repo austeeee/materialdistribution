@@ -1,0 +1,77 @@
+{% extends 'headandfoot/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Member Details
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/teacher.css' %}">
+<div class="container">
+    <h1>Member Details</h1>
+    
+    <!-- Display Messages -->
+    
+    
+    <!-- Add Members Button -->
+    <div class="mb-3">
+        <a href="{% url 'register' %}" class="btn btn-primary">Add Members</a>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>SI No</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Phone Number</th>
+                    <th>Registered At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in members %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ member.username }}</td>
+                    <td>{{ member.get_role_display }}</td>
+                    <td>{{ member.member_detail.phone_number }}</td>
+                    <td>{{ member.registered_at }}</td>
+                    <td>
+                        <form method="post" action="{% url 'remove_member' member.id %}" 
+                              onsubmit="return confirm('Are you sure you want to remove this member?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">No members found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/teacher.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Auto-close alerts after 5 seconds
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            var alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                var bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+    });
+</script>
+{% endblock %}

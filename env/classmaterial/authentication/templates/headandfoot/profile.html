@@ -1,0 +1,53 @@
+{% extends 'headandfoot/layout.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}?v=2">
+<div class="container my-5">
+    <div class="row">
+        <!-- User Info Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Profile Information</h3>
+                    <div class="user-info">
+                        <p><strong>Username:</strong> {{ user.username }}</p>
+                        <p><strong>Email:</strong> {{ user.email }}</p>
+                        <p><strong>Phone:</strong> {{ member_detail.phone_number }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Profile Form -->
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">Edit Profile</h3>
+                        <form method="post" onsubmit="return confirm('Are you sure you want to update the profile');">
+                            {% csrf_token %}
+                            {{ profile_form.as_p }}
+                            <button type="submit" name="update_profile" class="btn btn-primary">
+                                Update Profile
+                            </button>
+                        </form>
+                </div>
+            </div>
+
+            <!-- Change Password Form -->
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">Change Password</h3>
+                    <form method="post" onsubmit="return confirm('Are you sure you want to change the password');">
+                        {% csrf_token %}
+                        {{ password_form.as_p }}
+                        <button type="submit" name="change_password" class="btn btn-warning">
+                            Change Password
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

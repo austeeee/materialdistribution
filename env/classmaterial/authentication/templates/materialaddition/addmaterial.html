@@ -1,0 +1,52 @@
+{% extends 'headandfoot/layout.html' %}
+{% load static %}
+
+{% block title %}
+Add Material
+{% endblock %}
+
+{% block head %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/addmaterial.css' %}?v=2">
+
+<div class="form-container">
+    <h1>Add Material</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Material Name:</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            {{ form.description }}
+        </div>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            {{ form.category }}
+        </div>
+        <div class="form-group">
+            <label for="quantity_available">Quantity Available:</label>
+            {{ form.quantity_available }}
+            {{ form.quantity_available.errors }}
+        </div>
+        <div class="form-group">
+            <label for="target_class">Target Class:</label>
+            {{ form.target_class }}
+        </div>
+        <div class="form-group">
+            <label for="price">Price (₹):</label>
+            {{ form.price }}
+            {{ form.price.errors }}
+        </div>
+        <div class="form-group">
+            <label for="file">Upload File:</label>
+            {{ form.file }}
+        </div>
+        <button type="submit" class="submit-btn">Add Material</button>
+    </form>
+</div>
+{% endblock %}

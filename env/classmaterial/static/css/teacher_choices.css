@@ -1,0 +1,69 @@
+/* Scope styles to .teacher-dashboard to prevent affecting layout.html */
+.teacher-dashboard body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Light background */
+    color: #333;
+}
+
+/* Headings styling */
+.teacher-dashboard h1, .teacher-dashboard h2 {
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+    text-transform: capitalize;
+}
+
+/* Styling for the unordered list */
+.teacher-dashboard ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+    margin: 40px auto; /* Center the list */
+    max-width: 800px; /* Limit the width of the list */
+}
+
+/* Styling for individual list items */
+.teacher-dashboard ul li {
+    margin: 20px 0; /* Add spacing between items */
+    text-align: center;
+}
+
+/* Styling for links (buttons) */
+.teacher-dashboard ul li a {
+    display: inline-block; /* Allow equal-width buttons */
+    width: 100%; /* Make the buttons span the container width */
+    max-width: 600px; /* Limit button width on larger screens */
+    padding: 15px 30px; /* Add padding for larger clickable area */
+    font-size: 1.4rem; /* Slightly larger font for readability */
+    text-decoration: none; /* Remove underline */
+    color: #fff; /* White text */
+    background-color: #007BFF; /* Blue background */
+    border-radius: 12px; /* Rounded corners */
+    font-weight: bold;
+    transition: all 0.3s ease; /* Smooth hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+    text-align: center; /* Center the text */
+}
+
+/* Hover effect for buttons */
+.teacher-dashboard ul li a:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    color: #fff; /* Keep text white */
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    .teacher-dashboard ul li a {
+        font-size: 1.2rem; /* Adjust font size for smaller screens */
+        padding: 12px 20px; /* Adjust padding for smaller screens */
+        width: 90%; /* Reduce button width on smaller screens */
+    }
+
+    .teacher-dashboard h1, .teacher-dashboard h2 {
+        font-size: 1.8rem; /* Adjust heading size for smaller screens */
+    }
+}

@@ -1,0 +1,48 @@
+{% extends 'headandfoot/layout.html' %}
+{% load static %}
+
+{% block title %}
+    My Requests
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/myrequests.css' %}">
+    <div class="container">
+        <h1>My Material Requests</h1>
+
+        {% if requests %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Material Name</th>
+                        <th>Requested At</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for request in requests %}
+                    <tr>
+                        <td>{{ request.material.name }}</td>
+                        <td>{{ request.requested_at|date:"Y-m-d H:i" }}</td>
+                        <td>{{ request.status }}</td>
+                        <td>
+                            {% if request.status == "Approved" and request.material.file %}
+                                <a href="{{ request.material.file.url }}" class="btn btn-primary" download>
+                                    Download
+                                </a>
+                            {% else %}
+                                <span></span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="alert alert-info" role="alert">
+                You have not made any requests yet.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

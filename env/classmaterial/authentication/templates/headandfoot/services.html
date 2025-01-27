@@ -1,0 +1,33 @@
+{% extends 'headandfoot/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Our Services
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Our Classroom Material Distribution Services</h1>
+        <p>Welcome to our classroom material distribution system! Below are the services we offer:</p>
+
+        <div class="service">
+            <h3>Material Request</h3>
+            <p>Students can request materials from available resources. Simply select the material and submit your request.</p>
+        </div>
+
+        <div class="service">
+            <h3>Material Upload</h3>
+            <p>Teachers can upload educational materials to be shared with students.</p>
+        </div>
+
+        <div class="service">
+            <h3>Material Management</h3>
+            <p>Admins can manage materials and requests, including approving and rejecting them.</p>
+        </div>
+
+        <div class="service">
+            <h3>Download Materials</h3>
+            <p>Approved requests can download the materials directly from the platform.</p>
+        </div>
+    </div>
+{% endblock %}

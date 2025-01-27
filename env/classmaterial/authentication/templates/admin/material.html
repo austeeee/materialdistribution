@@ -1,0 +1,26 @@
+{% extends 'headandfoot/layout.html' %}
+{% load static %}
+
+{% block title %}
+Teacher Dashboard
+{% endblock %}
+
+{% block head %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/teacher_choices.css' %}?v=2">
+
+<div class="teacher-dashboard">
+    <h1>Welcome, {{ user.username }}</h1>
+    <h2>Teacher Choices</h2>
+    <ul>
+        <li><a href="{% url 'addmaterial' %}">Add Material</a></li>
+        <!-- Only one Update button -->
+        <li><a href="{% url 'update_materials_list' %}">Update Materials</a></li>
+        <li><a href="{% url 'requests' %}">Requests</a></li>
+        
+    </ul>
+</div>
+{% endblock %}

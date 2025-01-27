@@ -1,0 +1,55 @@
+{% extends 'headandfoot/layout.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/request.css' %}">
+<h2>Material Requests</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Material</th>
+            <th>Student</th>
+            <th>Requested At</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for req in requests %}
+        <tr>
+            <td>{{ req.material.name }}</td>
+            <td>{{ req.student.username }}</td>
+            <td>{{ req.requested_at|date:"Y-m-d H:i" }}</td>
+            <td>{{ req.status }}</td>
+            <td>
+                <!-- Approve and Reject buttons -->
+                {% if req.status == "Pending" %}
+                <form method="POST" action="{% url 'approve_request' req.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Approve</button>
+                </form>
+                <form method="POST" action="{% url 'reject_request' req.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Reject</button>
+                </form>
+                {% elif req.status == "Approved" %}
+                <!-- Delivered button -->
+                    <form method="POST" action="{% url 'requests' %}" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="mark_as_delivered" value="{{ req.id }}">
+                        <button type="submit" class="btn btn-primary">
+                            Mark as Delivered
+                        </button>
+                    </form>
+                {% else %}
+                <span></span>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="text-center">No requests found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

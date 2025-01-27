@@ -1,0 +1,25 @@
+{% extends 'headandfoot/layout.html' %}
+{% load static %}
+
+{% block title %}
+Class Choices
+{% endblock %}
+
+{% block head %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/class_choices.css' %}?v=2">
+
+<div class="class-choices-page">
+    <h1>Available Class Choices</h1>
+    <ul>
+        {% for value, label in class_choices %}
+        <li>
+            <a href="{% url 'student' value %}">{{ label }}</a>  <!-- Pass the value to the URL -->
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
