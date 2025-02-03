@@ -98,10 +98,10 @@ body {
 
 /* Main content styles */
 main {
-    padding: 2rem; /* Additional padding for spacing */
+     /* Additional padding for spacing */
     flex: 1; /* Allow the main content to take up available space */
     margin-bottom: 4rem; /* Space for footer height */
-    padding-top: 80px; /* Space for header */
+   /* Space for header */
     display: flex; /* Center content vertically */
     align-items: center;
     justify-content: center;
@@ -114,4 +114,9 @@ main {
     flex: 1; /* Ensure the wrapper grows to fill available height */
     display: flex;
     flex-direction: column;
+}
+
+
+.about-container{
+    margin-left: 60px;
 }

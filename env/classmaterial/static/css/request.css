@@ -1,32 +1,69 @@
-/* Styling for the request page */
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Center the heading */
+/* Center the container */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Center the heading */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Table styling */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
+
+/* Table header */
 table th, table td {
-    padding: 12px;
-    text-align: left;
+    padding: 14px;
+    text-align: center;
     border: 1px solid #ddd;
 }
 
 table th {
-    background-color: #f2f2f2;
+    background-color: #007bff;
+    color: white;
     font-weight: bold;
 }
 
+/* Alternate row colors */
 table tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
 table tr:hover {
     background-color: #f1f1f1;
+    transition: 0.3s ease-in-out;
 }
 
+/* Center empty state text */
 .text-center {
     text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #777;
+    padding: 15px;
 }
 
 /* Styling for action buttons */
@@ -35,16 +72,18 @@ form {
 }
 
 button {
-    padding: 6px 12px;
+    padding: 8px 14px;
     border: none;
     cursor: pointer;
     font-size: 14px;
-    border-radius: 4px;
+    border-radius: 5px;
     margin: 0 5px;
+    transition: 0.3s ease-in-out;
 }
 
+/* Approve button */
 .btn-approve {
-    background-color: #28a745; /* Green for approve */
+    background-color: #28a745;
     color: white;
 }
 
@@ -52,8 +91,9 @@ button {
     background-color: #218838;
 }
 
+/* Reject button */
 .btn-reject {
-    background-color: #dc3545; /* Red for reject */
+    background-color: #dc3545;
     color: white;
 }
 
@@ -61,9 +101,29 @@ button {
     background-color: #c82333;
 }
 
-/* Styling for empty state */
-.text-center {
-    font-size: 16px;
-    font-weight: bold;
-    color: #777;
+/* Delivered button */
+.btn-delivered {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-delivered:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive table */
+@media screen and (max-width: 768px) {
+    table {
+        width: 95%;
+    }
+
+    table th, table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
 }

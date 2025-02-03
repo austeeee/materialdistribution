@@ -1,134 +1,84 @@
-/* register.css */
-
+/* General Styles */
 body {
-    background-color: #f8f9fa; 
-    /* Light gray background for the page */
-    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
+/* Center the registration card */
 .container {
-    
-    margin-left: 20px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    padding: 50px; /* Add padding inside the container */
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Full-screen height */
-    box-sizing: border-box; /* Include padding in height calculations */
+    min-height: 100vh;
 }
 
+/* Card Styling */
 .card {
-    padding: 150px;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    background-color: #ffffff; /* White background for the card */
     width: 100%;
-    max-width: 500px; /* Restrict the width for a neat appearance */
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    padding: 20px;
 }
 
+/* Card Header */
 .card-header {
-    background-color: #007bff; /* Primary blue */
+    text-align: center;
+    background-color: #007bff;
     color: white;
     padding: 15px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    text-align: center; /* Center the header text */
+    border-radius: 10px 10px 0 0;
 }
 
-.card-header h2 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.card-body {
-    
-    padding: 150px;
-    display: flex;
-    flex-direction: column; /* Stack the fields vertically */
-    align-items: center; /* Center the fields horizontally */
-}
-
+/* Form Styles */
 .form-group {
-    width: 100%; /* Take up full width of the card */
     margin-bottom: 15px;
 }
 
-.form-group label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-    color: #495057; /* Dark gray text for labels */
+/* Input Fields */
+.form-control {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-.form-group input {
+/* Read-only Role Field */
+.form-control[readonly] {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+/* Error Messages */
+.alert-danger {
+    margin-top: 5px;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Register Button */
+.btn-primary {
     width: 100%;
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ced4da; /* Light gray border */
+    font-size: 18px;
     border-radius: 5px;
-    margin-top: 5px;
-    transition: border-color 0.3s;
-}
-
-.form-group input:focus {
-    border-color: #007bff; /* Blue border on focus */
-    outline: none;
-    box-shadow: 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle focus shadow */
-}
-
-.alert {
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-.alert-danger {
-    background-color: #f8d7da; /* Light red background */
-    color: #721c24; /* Dark red text */
-    border-color: #f5c6cb;
-}
-
-.alert-success {
-    background-color: #d4edda; /* Light green background */
-    color: #155724; /* Dark green text */
-    border-color: #c3e6cb;
-}
-
-.btn-primary {
-    background-color: #007bff; /* Blue button */
+    background-color: #007bff;
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    transition: 0.3s;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3;
 }
 
-.text-center button {
-    width: 100%;
-}
-
-.role-value {
-    font-weight: bold; /* Makes the text bold */
-    text-transform: capitalize; /* Capitalizes the role value */
-}
-
-
-@media (max-width: 768px) {
-    .container {
-        padding: 20px; /* Adjust padding for smaller screens */
-    }
-
+/* Responsive Design */
+@media (max-width: 600px) {
     .card {
-        margin-top: 20px;
+        padding: 15px;
     }
 }

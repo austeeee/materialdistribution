@@ -6,9 +6,7 @@ Login - {{ role|title }}
 {% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-    <a href="{% url 'logout' %}" class="nav-link">Logout</a>
-{% endif %}
+
 <link rel="stylesheet" href="{% static 'css/login.css' %}?v=2">
 <div class="form-section">
     <h2>{{ role|title }} Login</h2>

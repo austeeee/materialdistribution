@@ -1,0 +1,62 @@
+{% extends 'headandfoot/layout.html' %}
+{% load static %}
+
+{% block title %}
+Reports
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/report.css' %}">
+
+<div class="container">
+    <h1>Material Usage and Distribution Efficiency</h1>
+    
+    <div class="report-section">
+        <h2>Overview</h2>
+        <p><strong>Total Materials:</strong> {{ total_materials }}</p>
+        <p><strong>Total Requests:</strong> {{ total_requests }}</p>
+        <p><strong>Approved Requests:</strong> {{ approved_requests }}</p>
+        <p><strong>Distribution Efficiency:</strong> {{ distribution_efficiency|floatformat:2 }}%</p>
+    </div>
+
+    <div class="report-section">
+        <h2>Most Requested Materials</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Material Name</th>
+                    <th>Request Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in most_requested_materials %}
+                <tr>
+                    <td>{{ item.material__name }}</td>
+                    <td>{{ item.request_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="report-section">
+        <h2>Requests by Target Class</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Target Class</th>
+                    <th>Total Requests</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in requests_by_class %}
+                <tr>
+                    <td>{{ item.material__target_class }}</td>
+                    <td>{{ item.total_requests }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

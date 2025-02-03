@@ -125,6 +125,7 @@ class MaterialRequest(models.Model):
         blank=True, 
         help_text="Optional notes or comments about the request."
     )
+    is_new = models.BooleanField(default=False)  # New field to track status updates
 
     def approve(self):
         """
@@ -149,6 +150,13 @@ class MaterialRequest(models.Model):
             self.save()
         else:
             raise ValueError("Only approved requests can be marked as delivered.")
+        
+    def save(self, *args, **kwargs):
+        if self.pk:  # Check if it's an existing request
+            old_request = MaterialRequest.objects.get(pk=self.pk)
+            if old_request.status != self.status:  # If the status has changed
+                self.is_new = True  # Mark as new notification
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.student.username} requested {self.material.name} ({self.quantity_requested}) - {self.status}"

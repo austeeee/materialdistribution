@@ -13,9 +13,17 @@
     
     <h1>Material Details</h1>
     <div class="my-request-button">
-        
-        <a href="{% url 'my_requests' %}" class="btn btn-primary">My Requests</a>
+        <a href="{% url 'my_requests' %}" class="btn btn-primary">
+            My Requests
+            {% if new_request_count|add:0 > 0 %}
+                <span class="badge">
+                    {{ new_request_count }}
+                </span>
+            {% endif %}
+        </a>
     </div>
+    
+    
     {% if materials %}
     <table>
         <thead>
@@ -29,7 +37,7 @@
                 <th>Date Added</th>
                 <th>Last Updated</th>
                 <th>Request</th>
-                <th>Comments</th>
+                <th>Feedback</th>
                 <th>Buy</th>
             </tr>
         </thead>
@@ -56,7 +64,7 @@
                     <div id="modal-{{ material.id }}" class="modal">
                         <div class="modal-content">
                             <span class="close" onclick="closeModal('{{ material.id }}')">&times;</span>
-                            <h2>Comments for {{ material.name }}</h2>
+                            <h2>Feedback for {{ material.name }}</h2>
                             <div class="comments-section">
                                 <ul>
                                     {% for comment in material.comments %}
@@ -65,8 +73,8 @@
                                 </ul>
                                 <form method="post" action="{% url 'add_comment' material.id %}">
                                     {% csrf_token %}
-                                    <textarea name="comment" rows="4" placeholder="Add a comment..." required></textarea><br>
-                                    <button type="submit" class="btn submit-btn">Add Comment</button>
+                                    <textarea name="comment" rows="4" placeholder="Add a Feedback..." required></textarea><br>
+                                    <button type="submit" class="btn submit-btn">Add Feedback</button>
                                 </form>
                                 
                             </div>
@@ -83,6 +91,7 @@
     {% else %}
     <p class="no-data">No materials found.</p>
     {% endif %}
+    
 </div>
 <script>
 function openModal(id) {

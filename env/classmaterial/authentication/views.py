@@ -15,6 +15,9 @@ from django.contrib import messages
 from .models import MaterialDetail, MaterialRequest, MemberDetail, MaterialComment,User
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from .models import MaterialRequest
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 from django.utils.encoding import force_bytes
@@ -40,12 +43,15 @@ def services(request):
     return render(request, 'headandfoot/services.html')
 def layout(request):
     return render(request, 'headandfoot/layout.html')
+@login_required(login_url='login')
 def admin(request):
     return render(request, 'users/admin.html')
+@login_required(login_url='login')
 def material(request):
     materials = MaterialDetail.objects.all()  # Fetch all materials from the database
     return render(request, 'admin/material.html', {'materials': materials})
 
+@login_required(login_url='login')
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST, current_user=request.user)
@@ -102,7 +108,8 @@ def register(request):
         form = UserRegistrationForm(current_user=request.user)
 
     return render(request, 'registration/register.html', {'form': form})
-    
+
+@login_required(login_url='login')
 def update_materials_list(request):
     # Fetch all materials and their related comments
     materials = MaterialDetail.objects.prefetch_related('materialcomment_set').all().order_by('-updated_date')
@@ -195,12 +202,20 @@ def logout_view(request):
 @login_required
 def student(request, target_class):
     materials = MaterialDetail.objects.filter(target_class=target_class).order_by('-added_date')
+
     for material in materials:
         # Get all comments for each material
         material.comments = MaterialComment.objects.filter(material=material)
 
-    return render(request, 'users/student.html', {'materials': materials})
+    # Fetch new request count
+    new_request_count = MaterialRequest.objects.filter(student=request.user, is_new=1).count()
 
+    return render(request, 'users/student.html', {
+        'materials': materials,
+        'new_request_count': new_request_count  # ✅ Pass to template
+    })
+
+@login_required(login_url='login')
 def student_view(request, class_choice):
     materials = MaterialDetail.objects.filter(target_class=class_choice)  # Filter materials by class choice
     return render(request, 'student.html', {'materials': materials})
@@ -376,7 +391,6 @@ def teacher_request(request, request_id=None):
     return render(request, 'teacher/requests.html', {'requests': requests})
 
 
-
 def custom_password_reset(request):
     if request.method == 'POST':
         form = CustomPasswordResetForm(request.POST)
@@ -408,6 +422,7 @@ def custom_password_reset(request):
         form = CustomPasswordResetForm()
 
     return render(request, 'password_reset/custom_password_reset.html', {'form': form})
+
 def custom_password_reset_confirm(request, uidb64, token):
     try:
         # Decode the user's ID
@@ -456,11 +471,25 @@ def reject_request(request, request_id):
     messages.success(request, f"The request for {material_request.material.name} has been rejected.")
     return redirect('requests')
 
+@login_required
 def my_requests(request):
-    # Fetch the material requests for the logged-in user
+    # Fetch the material requests for the logged-in student
     requests = MaterialRequest.objects.filter(student=request.user).order_by('-requested_at')
-    return render(request, 'student/my_requests.html', {'requests': requests})
 
+    # Count new requests where is_new=1
+    new_request_count = requests.filter(is_new=1).count()
+
+
+    # Mark requests as read when the page is accessed
+    requests.update(is_new=0)
+
+    return render(request, 'student/my_requests.html', {
+        'requests': requests,
+        'new_request_count': new_request_count  # Ensure this is passed
+    })
+
+
+@login_required(login_url='login')
 def approve_request(request, request_id):
     material_request = get_object_or_404(MaterialRequest, id=request_id)
 
@@ -471,6 +500,7 @@ def approve_request(request, request_id):
     messages.success(request, f"Request for {material_request.material.name} has been approved.")
     return redirect('requests')  # or redirect back to your page
 
+@login_required(login_url='login')
 def reject_request(request, request_id):
     material_request = get_object_or_404(MaterialRequest, id=request_id)
 
@@ -519,7 +549,7 @@ def profile_view(request):
     }
     return render(request, 'headandfoot/profile.html', context)
 
-
+@login_required(login_url='login')
 def update_material(request, material_id):
     material = get_object_or_404(MaterialDetail, id=material_id)
     
@@ -553,7 +583,7 @@ def update_material(request, material_id):
         'target_class_choices': target_class_choices
     })
 
-
+@login_required(login_url='login')
 def remove_material(request, material_id):
     material = get_object_or_404(MaterialDetail, id=material_id)
 
@@ -564,6 +594,7 @@ def remove_material(request, material_id):
 
     return render(request, 'admin/confirm_remove.html', {'material': material})
 
+@login_required(login_url='login')
 def generate_reports(request):
     """
     Generates reports on material usage and distribution efficiency.
@@ -607,6 +638,7 @@ def generate_reports(request):
 
     return render(request, 'admin/reports.html', context)
 
+@login_required(login_url='login')
 def buy_material(request, material_id):
     material = get_object_or_404(MaterialDetail, id=material_id)
     

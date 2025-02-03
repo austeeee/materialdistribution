@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="{% static 'css/myrequests.css' %}">
     <div class="container">
         <h1>My Material Requests</h1>
-
+        
         {% if requests %}
             <table class="table table-striped">
                 <thead>
@@ -27,12 +27,12 @@
                         <td>{{ request.requested_at|date:"Y-m-d H:i" }}</td>
                         <td>{{ request.status }}</td>
                         <td>
-                            {% if request.status == "Approved" and request.material.file %}
-                                <a href="{{ request.material.file.url }}" class="btn btn-primary" download>
-                                    Download
-                                </a>
-                            {% else %}
-                                <span></span>
+                            {% if request.status == "Approved" or request.status == "Delivered" %}
+                                {% if request.material.file %}
+                                    <a href="{{ request.material.file.url }}" class="btn btn-primary" download>
+                                        Download
+                                    </a>
+                                {% endif %}
                             {% endif %}
                         </td>
                     </tr>
@@ -44,5 +44,6 @@
                 You have not made any requests yet.
             </div>
         {% endif %}
+
     </div>
 {% endblock %}

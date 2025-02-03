@@ -100,7 +100,7 @@ button[type="submit"]:hover {
 /* Column and Layout Styling */
 .row {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-between;
 }
 

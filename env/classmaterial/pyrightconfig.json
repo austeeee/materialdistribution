@@ -1,0 +1,11 @@
+{
+    "extraPaths": ["."],
+    "pythonVersion": "3.8",
+    "pythonPlatform": "All",
+    "exclude": [
+      "**/node_modules",
+      "**/__pycache__"
+    ],
+    "typeCheckingMode": "basic",
+    "useLibraryCodeForTypes": true
+  }

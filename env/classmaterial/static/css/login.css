@@ -33,7 +33,6 @@ h2 {
 p {
     font-size: 14px;
     margin-bottom: 20px;
-    color: #666666;
 }
 
 /* Form Group */
@@ -51,7 +50,7 @@ label {
 }
 
 input {
-    width: 100%;
+    width: 90%;
     padding: 10px 15px;
     font-size: 14px;
     border: 1px solid #cccccc;
